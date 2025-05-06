@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Gallery as GalleryIcon, Upload, Folder } from "lucide-react";
+import { ImageIcon, Upload, Folder } from "lucide-react";
 
 interface GalleryImage {
   id: string;
@@ -122,7 +122,7 @@ export const Gallery: React.FC<{ isAdmin?: boolean }> = ({ isAdmin = false }) =>
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <GalleryIcon className="w-8 h-8 mr-3 text-spectrum-700" />
+          <ImageIcon className="w-8 h-8 mr-3 text-spectrum-700" />
           <h2 className="text-2xl font-bold">Community Gallery</h2>
         </div>
         {isAdmin && (

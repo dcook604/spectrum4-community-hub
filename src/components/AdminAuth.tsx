@@ -8,7 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 
 interface AdminAuthContextType {
   isAuthenticated: boolean;
-  login: (username: string, password: string) => void;
+  login: (username: string, password: string) => boolean;
   logout: () => void;
 }
 
