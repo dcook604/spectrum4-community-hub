@@ -27,15 +27,46 @@ interface AdminAuthProviderProps {
 }
 
 // Define valid admin credentials
-interface AdminCredentials {
+export interface AdminCredentials {
   username: string;
   password: string;
 }
 
-const validAdmins: AdminCredentials[] = [
+// Storage key for admin users in localStorage
+const ADMIN_USERS_KEY = 'adminUsers';
+
+// Initial admin users
+const defaultAdmins: AdminCredentials[] = [
   { username: 'admin', password: 'spectrum4' },
   { username: 'dcook@spectrum4.ca', password: 'admin123' }
 ];
+
+// Function to get admin users from localStorage or use defaults
+export const getAdminUsers = (): AdminCredentials[] => {
+  const storedUsers = localStorage.getItem(ADMIN_USERS_KEY);
+  if (storedUsers) {
+    return JSON.parse(storedUsers);
+  }
+  // Initialize localStorage with default users if it doesn't exist
+  localStorage.setItem(ADMIN_USERS_KEY, JSON.stringify(defaultAdmins));
+  return defaultAdmins;
+};
+
+// Function to add a new admin user
+export const addAdminUser = (username: string, password: string): AdminCredentials[] => {
+  const users = getAdminUsers();
+  const updatedUsers = [...users, { username, password }];
+  localStorage.setItem(ADMIN_USERS_KEY, JSON.stringify(updatedUsers));
+  return updatedUsers;
+};
+
+// Function to remove an admin user
+export const removeAdminUser = (username: string): AdminCredentials[] => {
+  const users = getAdminUsers();
+  const updatedUsers = users.filter(user => user.username !== username);
+  localStorage.setItem(ADMIN_USERS_KEY, JSON.stringify(updatedUsers));
+  return updatedUsers;
+};
 
 export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -45,6 +76,9 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }
   const { toast } = useToast();
 
   const login = (username: string, password: string) => {
+    // Get current users from localStorage
+    const validAdmins = getAdminUsers();
+    
     // Check if credentials match any valid admin
     const isValid = validAdmins.some(
       admin => admin.username === username && admin.password === password
