@@ -26,6 +26,17 @@ interface AdminAuthProviderProps {
   children: ReactNode;
 }
 
+// Define valid admin credentials
+interface AdminCredentials {
+  username: string;
+  password: string;
+}
+
+const validAdmins: AdminCredentials[] = [
+  { username: 'admin', password: 'spectrum4' },
+  { username: 'dcook@spectrum4.ca', password: 'admin123' }
+];
+
 export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     const stored = localStorage.getItem('adminAuthenticated');
@@ -34,9 +45,12 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }
   const { toast } = useToast();
 
   const login = (username: string, password: string) => {
-    // Simple authentication - in a real app, this would be more secure
-    // Default credentials: admin / spectrum4
-    if (username === 'admin' && password === 'spectrum4') {
+    // Check if credentials match any valid admin
+    const isValid = validAdmins.some(
+      admin => admin.username === username && admin.password === password
+    );
+
+    if (isValid) {
       setIsAuthenticated(true);
       localStorage.setItem('adminAuthenticated', 'true');
       toast({
@@ -124,3 +138,4 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
     </div>
   );
 };
+
