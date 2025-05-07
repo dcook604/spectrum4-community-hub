@@ -88,6 +88,13 @@ const Index = () => {
       <section className="bg-spectrum-800 text-white">
         <div className="container mx-auto px-4 py-16 sm:py-24">
           <div className="text-center">
+            <div className="flex justify-center mb-6">
+              <img 
+                src="/lovable-uploads/221a17a8-d59b-4f3c-be44-237bb705fd12.png" 
+                alt="Spectrum 4 Logo" 
+                className="h-28 md:h-36"
+              />
+            </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">Welcome to Spectrum 4</h1>
             <p className="text-xl sm:text-2xl mb-8 max-w-3xl mx-auto">
               Your community hub for strata information, updates, and resources.
