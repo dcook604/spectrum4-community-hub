@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { GalleryHorizontal } from "lucide-react";
+import { GalleryHorizontal, Download } from "lucide-react";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,6 +15,7 @@ const Navigation = () => {
     { name: 'Contacts', path: '/contacts' },
     { name: 'Calendar', path: '/calendar' },
     { name: 'Move In/Out', path: '/move-in-out' },
+    { name: 'Documents', path: '/documents', icon: Download },
     { name: 'Gallery', path: '/gallery', icon: GalleryHorizontal },
   ];
 
