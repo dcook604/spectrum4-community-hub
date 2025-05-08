@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, FileText } from "lucide-react";
 
-interface Document {
+// Renamed interface from Document to DocumentFile to avoid conflict with DOM Document type
+interface DocumentFile {
   id: string;
   title: string;
   description: string;
@@ -16,7 +17,7 @@ interface Document {
 }
 
 export default function Documents() {
-  const [documents, setDocuments] = useState<Document[]>([]);
+  const [documents, setDocuments] = useState<DocumentFile[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -80,6 +81,7 @@ export default function Documents() {
                     size="sm" 
                     className="flex items-center gap-1"
                     onClick={() => {
+                      // Using the global document object, not the interface
                       const link = document.createElement('a');
                       link.href = document.fileContent;
                       link.download = document.fileName;

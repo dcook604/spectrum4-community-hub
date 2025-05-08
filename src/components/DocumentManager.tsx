@@ -8,7 +8,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useToast } from "@/hooks/use-toast";
 import { FilePlus, Trash, Download, FileText } from "lucide-react";
 
-interface Document {
+// Renamed interface from Document to DocumentFile to avoid conflict
+interface DocumentFile {
   id: string;
   title: string;
   description: string;
@@ -20,9 +21,9 @@ interface Document {
 }
 
 export function DocumentManager() {
-  const [documents, setDocuments] = useState<Document[]>([]);
+  const [documents, setDocuments] = useState<DocumentFile[]>([]);
   const [showUploadForm, setShowUploadForm] = useState(false);
-  const [newDocument, setNewDocument] = useState<Partial<Document>>({
+  const [newDocument, setNewDocument] = useState<Partial<DocumentFile>>({
     title: '',
     description: '',
   });
@@ -76,7 +77,7 @@ export function DocumentManager() {
       // Convert file to base64
       const base64Content = await convertFileToBase64(file);
       
-      const newDoc: Document = {
+      const newDoc: DocumentFile = {
         id: Date.now().toString(),
         title: newDocument.title || file.name,
         description: newDocument.description || '',
