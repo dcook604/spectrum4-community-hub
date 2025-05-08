@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import NewsCard from "@/components/NewsCard";
@@ -13,8 +12,17 @@ interface NewsItem {
   type: string;
 }
 
+interface PageContent {
+  id: string;
+  slug: string;
+  title: string;
+  content: string;
+  lastUpdated: string;
+}
+
 const Index = () => {
   const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
+  const [pages, setPages] = useState<PageContent[]>([]);
 
   useEffect(() => {
     // Load news items from localStorage
@@ -49,8 +57,15 @@ const Index = () => {
       ];
       setNewsItems(defaultItems);
     }
+
+    // Load pages
+    const storedPages = localStorage.getItem('sitePages');
+    if (storedPages) {
+      setPages(JSON.parse(storedPages));
+    }
   }, []);
 
+  // Create dynamic quick links from pages
   const quickLinks = [
     {
       title: "Recycling Guide",
@@ -80,7 +95,11 @@ const Index = () => {
       link: "/calendar",
       color: "bg-amber-100 text-amber-700"
     }
-  ];
+  ].map(link => {
+    // Match link with actual page if exists
+    const matchingPage = pages.find(page => page.slug === link.link.substring(1));
+    return matchingPage ? link : link;
+  });
 
   return (
     <div className="min-h-screen">

@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import GalleryPage from "./pages/GalleryPage";
+import ContentPage from "./components/ContentPage";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
@@ -26,6 +27,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/:slug" element={<ContentPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

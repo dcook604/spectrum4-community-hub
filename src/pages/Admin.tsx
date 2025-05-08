@@ -4,9 +4,10 @@ import { AdminAuthProvider, LoginForm, useAdminAuth } from "@/components/AdminAu
 import { ContentManager } from "@/components/ContentManager";
 import { Gallery } from "@/components/Gallery";
 import { UserManager } from "@/components/UserManager";
+import { PageManager } from "@/components/PageManager";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Edit, GalleryHorizontal, LogOut, Users } from "lucide-react";
+import { Edit, GalleryHorizontal, LogOut, Users, FileText } from "lucide-react";
 
 const AdminContent = () => {
   const { isAuthenticated, logout } = useAdminAuth();
@@ -27,9 +28,12 @@ const AdminContent = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid grid-cols-3 mb-6">
+          <TabsList className="grid grid-cols-4 mb-6">
             <TabsTrigger value="content" className="flex items-center gap-2">
-              <Edit className="w-4 h-4" /> Manage Content
+              <Edit className="w-4 h-4" /> News
+            </TabsTrigger>
+            <TabsTrigger value="pages" className="flex items-center gap-2">
+              <FileText className="w-4 h-4" /> Pages
             </TabsTrigger>
             <TabsTrigger value="gallery" className="flex items-center gap-2">
               <GalleryHorizontal className="w-4 h-4" /> Gallery
@@ -40,6 +44,9 @@ const AdminContent = () => {
           </TabsList>
           <TabsContent value="content" className="bg-white rounded-lg shadow-sm p-6">
             <ContentManager />
+          </TabsContent>
+          <TabsContent value="pages" className="bg-white rounded-lg shadow-sm p-6">
+            <PageManager />
           </TabsContent>
           <TabsContent value="gallery" className="bg-white rounded-lg shadow-sm p-6">
             <Gallery isAdmin={true} />
