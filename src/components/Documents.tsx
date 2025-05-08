@@ -63,17 +63,17 @@ export default function Documents() {
       
       {documents.length > 0 ? (
         <div className="grid gap-4 md:gap-6">
-          {documents.map((document) => (
-            <Card key={document.id} className="overflow-hidden">
+          {documents.map((doc) => (
+            <Card key={doc.id} className="overflow-hidden">
               <CardContent className="p-4 md:p-6">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-semibold text-lg">{document.title}</h3>
-                    {document.description && (
-                      <p className="text-gray-600 mt-1">{document.description}</p>
+                    <h3 className="font-semibold text-lg">{doc.title}</h3>
+                    {doc.description && (
+                      <p className="text-gray-600 mt-1">{doc.description}</p>
                     )}
                     <p className="text-sm text-gray-500 mt-2">
-                      {document.fileName} ({formatFileSize(document.fileSize)})
+                      {doc.fileName} ({formatFileSize(doc.fileSize)})
                     </p>
                   </div>
                   <Button 
@@ -81,13 +81,13 @@ export default function Documents() {
                     size="sm" 
                     className="flex items-center gap-1"
                     onClick={() => {
-                      // Using the global document object, not the interface
-                      const link = document.createElement('a');
-                      link.href = document.fileContent;
-                      link.download = document.fileName;
-                      document.body.appendChild(link);
+                      // Using the global document object, not the document variable from the map function
+                      const link = window.document.createElement('a');
+                      link.href = doc.fileContent;
+                      link.download = doc.fileName;
+                      window.document.body.appendChild(link);
                       link.click();
-                      document.body.removeChild(link);
+                      window.document.body.removeChild(link);
                     }}
                   >
                     <Download className="h-4 w-4" />
