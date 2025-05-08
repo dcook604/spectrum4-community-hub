@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import NewsCard from "@/components/NewsCard";
@@ -72,28 +73,28 @@ const Index = () => {
       description: "Learn about proper waste sorting and collection schedules",
       icon: Recycle,
       link: "/recycling",
-      color: "bg-green-100 text-green-700"
+      color: "bg-spectrum-green/20 text-spectrum-green"
     },
     {
       title: "Strata Bylaws",
       description: "Review our community rules and regulations",
       icon: FileText,
       link: "/bylaws",
-      color: "bg-blue-100 text-blue-700"
+      color: "bg-spectrum-blue/20 text-spectrum-blue"
     },
     {
       title: "Important Contacts",
       description: "Find contact information for strata council and services",
       icon: Users,
       link: "/contacts",
-      color: "bg-purple-100 text-purple-700"
+      color: "bg-spectrum-red/20 text-spectrum-red"
     },
     {
       title: "Upcoming Events",
       description: "View the calendar for meetings and community events",
       icon: CalendarDays,
       link: "/calendar",
-      color: "bg-amber-100 text-amber-700"
+      color: "bg-spectrum-yellow/20 text-spectrum-yellow"
     }
   ].map(link => {
     // Match link with actual page if exists
@@ -104,12 +105,12 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-spectrum-800 text-white">
+      <section className="bg-spectrum-blue text-white">
         <div className="container mx-auto px-4 py-16 sm:py-24">
           <div className="text-center">
             <div className="flex justify-center mb-6">
               <img 
-                src="/lovable-uploads/221a17a8-d59b-4f3c-be44-237bb705fd12.png" 
+                src="/lovable-uploads/dee11acd-11f1-4587-a514-c315a952b4e8.png" 
                 alt="Spectrum 4 Logo" 
                 className="h-28 md:h-36"
               />
@@ -119,10 +120,10 @@ const Index = () => {
               Your community hub for strata information, updates, and resources.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg" className="bg-white text-spectrum-800 hover:bg-gray-100">
+              <Button asChild size="lg" className="bg-white text-spectrum-blue hover:bg-gray-100">
                 <Link to="/calendar">View Calendar</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-white border-white hover:bg-spectrum-700">
+              <Button asChild variant="outline" size="lg" className="text-white border-white hover:bg-spectrum-blue/80">
                 <Link to="/gallery">Visit Gallery</Link>
               </Button>
             </div>
@@ -157,7 +158,7 @@ const Index = () => {
               <Link 
                 key={index} 
                 to={link.link}
-                className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
+                className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow hover-scale"
               >
                 <div className={`w-12 h-12 rounded-full ${link.color} flex items-center justify-center mb-4`}>
                   <link.icon className="w-6 h-6" />
@@ -171,7 +172,7 @@ const Index = () => {
       </section>
 
       {/* Move In/Out CTA */}
-      <section className="section-padding bg-spectrum-100">
+      <section className="section-padding bg-spectrum-blue/10">
         <div className="container mx-auto">
           <div className="bg-white rounded-xl shadow-sm p-8 flex flex-col md:flex-row items-center justify-between">
             <div className="mb-6 md:mb-0 md:mr-8">
@@ -181,7 +182,7 @@ const Index = () => {
                 and submit your request at least one week prior to your move date.
               </p>
             </div>
-            <Button asChild size="lg" className="bg-spectrum-600 hover:bg-spectrum-700 whitespace-nowrap">
+            <Button asChild size="lg" className="bg-spectrum-blue hover:bg-spectrum-blue/90 whitespace-nowrap">
               <Link to="/move-in-out">Schedule a Move</Link>
             </Button>
           </div>

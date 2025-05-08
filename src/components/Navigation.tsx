@@ -25,8 +25,11 @@ const Navigation = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-spectrum-700">Spectrum 4</span>
-              <span className="ml-2 text-sm bg-spectrum-700 text-white px-2 py-1 rounded">Strata</span>
+              <img 
+                src="/lovable-uploads/dee11acd-11f1-4587-a514-c315a952b4e8.png" 
+                alt="Spectrum 4 Logo" 
+                className="h-10 mr-3" 
+              />
             </Link>
           </div>
 
@@ -36,7 +39,7 @@ const Navigation = () => {
               <Link 
                 key={link.name} 
                 to={link.path}
-                className="text-gray-700 hover:text-spectrum-600 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+                className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
               >
                 {link.icon && <link.icon className="mr-1 h-4 w-4" />}
                 {link.name}
@@ -44,7 +47,7 @@ const Navigation = () => {
             ))}
             <Link 
               to="/admin" 
-              className="text-gray-700 hover:text-spectrum-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors"
             >
               Admin
             </Link>
@@ -85,7 +88,7 @@ const Navigation = () => {
             <Link
               key={link.name}
               to={link.path}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-600 hover:bg-gray-50 flex items-center"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50 flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
               {link.icon && <link.icon className="mr-2 h-4 w-4" />}
@@ -94,7 +97,7 @@ const Navigation = () => {
           ))}
           <Link
             to="/admin"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-600 hover:bg-gray-50"
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50"
             onClick={() => setIsMenuOpen(false)}
           >
             Admin
