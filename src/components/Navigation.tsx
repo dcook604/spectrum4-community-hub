@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { GalleryHorizontal, Download, ChevronDown } from "lucide-react";
+import { GalleryHorizontal, Download, ChevronDown, Mail } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,8 +23,10 @@ const Navigation = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
+    // Building Info will be rendered separately as a dropdown
     { name: 'Documents', path: '/documents', icon: Download },
     { name: 'Gallery', path: '/gallery', icon: GalleryHorizontal },
+    { name: 'Contact', path: '/contact', icon: Mail },
   ];
 
   return (
@@ -43,18 +45,16 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
-                to={link.path}
-                className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
-              >
-                {link.icon && <link.icon className="mr-1 h-4 w-4" />}
-                {link.name}
-              </Link>
-            ))}
+            {/* Home link */}
+            <Link 
+              key="home" 
+              to="/"
+              className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+            >
+              Home
+            </Link>
 
-            {/* Building Info Dropdown */}
+            {/* Building Info Dropdown - positioned after Home */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button 
@@ -78,6 +78,36 @@ const Navigation = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+
+            {/* Documents link */}
+            <Link 
+              key="documents" 
+              to="/documents"
+              className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+            >
+              <Download className="mr-1 h-4 w-4" />
+              Documents
+            </Link>
+
+            {/* Gallery link */}
+            <Link 
+              key="gallery" 
+              to="/gallery"
+              className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+            >
+              <GalleryHorizontal className="mr-1 h-4 w-4" />
+              Gallery
+            </Link>
+
+            {/* Contact link */}
+            <Link 
+              key="contact" 
+              to="/contact"
+              className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+            >
+              <Mail className="mr-1 h-4 w-4" />
+              Contact
+            </Link>
 
             <Link 
               to="/admin" 
@@ -118,19 +148,16 @@ const Navigation = () => {
         )}
       >
         <div className="px-2 pt-2 pb-3 space-y-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50 flex items-center"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.icon && <link.icon className="mr-2 h-4 w-4" />}
-              {link.name}
-            </Link>
-          ))}
+          {/* Home Link */}
+          <Link
+            to="/"
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50 flex items-center"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Home
+          </Link>
           
-          {/* Building Info Mobile Dropdown (simplified as list) */}
+          {/* Building Info Mobile Dropdown */}
           <div className="px-3 py-2 text-base font-medium text-gray-700">
             Building Info
           </div>
@@ -146,6 +173,36 @@ const Navigation = () => {
               </Link>
             ))}
           </div>
+          
+          {/* Documents Link */}
+          <Link
+            to="/documents"
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50 flex items-center"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <Download className="mr-2 h-4 w-4" />
+            Documents
+          </Link>
+          
+          {/* Gallery Link */}
+          <Link
+            to="/gallery"
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50 flex items-center"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <GalleryHorizontal className="mr-2 h-4 w-4" />
+            Gallery
+          </Link>
+          
+          {/* Contact Link */}
+          <Link
+            to="/contact"
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50 flex items-center"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <Mail className="mr-2 h-4 w-4" />
+            Contact
+          </Link>
           
           <Link
             to="/admin"
