@@ -15,7 +15,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, date, description, link }) =
   return (
     <Card className="h-full flex flex-col hover-scale">
       <CardHeader>
-        <CardTitle className="text-xl font-bold text-spectrum-blue">{title}</CardTitle>
+        <CardTitle className="text-xl font-bold text-spectrum-800">{title}</CardTitle>
         <CardDescription className="flex items-center mt-1">
           <CalendarDays className="h-4 w-4 mr-1" />
           <span>{date}</span>
@@ -26,7 +26,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, date, description, link }) =
       </CardContent>
       {link && (
         <CardFooter>
-          <Button variant="outline" size="sm" className="text-spectrum-blue hover:text-spectrum-blue/80">
+          <Button variant="outline" size="sm" className="text-spectrum-800 border-spectrum-800 hover:bg-spectrum-50">
             Read More
           </Button>
         </CardFooter>

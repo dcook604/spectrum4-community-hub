@@ -73,7 +73,7 @@ export default {
 					500: '#0ea5e9',
 					600: '#0284c7',
 					700: '#0369a1',
-					800: '#075985',
+					800: '#075985',  // Darker blue for buttons and headings
 					900: '#0c4a6e',
 				},
 				'spectrum-red': '#e53935',

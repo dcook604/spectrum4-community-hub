@@ -104,8 +104,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-spectrum-blue text-white">
+      {/* Hero Section - Removed blue background */}
+      <section className="bg-white text-spectrum-800">
         <div className="container mx-auto px-4 py-16 sm:py-24">
           <div className="text-center">
             <div className="flex justify-center mb-6">
@@ -115,15 +115,15 @@ const Index = () => {
                 className="h-28 md:h-36"
               />
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">Welcome to Spectrum 4</h1>
-            <p className="text-xl sm:text-2xl mb-8 max-w-3xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-spectrum-800">Welcome to Spectrum 4</h1>
+            <p className="text-xl sm:text-2xl mb-8 max-w-3xl mx-auto text-gray-700">
               Your community hub for strata information, updates, and resources.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg" className="bg-white text-spectrum-blue hover:bg-gray-100">
+              <Button asChild size="lg" className="bg-spectrum-800 hover:bg-spectrum-700 text-white">
                 <Link to="/calendar">View Calendar</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-white border-white hover:bg-spectrum-blue/80">
+              <Button asChild variant="outline" size="lg" className="border-spectrum-800 text-spectrum-800 hover:bg-spectrum-50">
                 <Link to="/gallery">Visit Gallery</Link>
               </Button>
             </div>
@@ -134,7 +134,7 @@ const Index = () => {
       {/* News Section */}
       <section className="section-padding bg-white">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center">Latest News</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center text-spectrum-800">Latest News</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {newsItems.map(item => (
               <NewsCard 
@@ -152,7 +152,7 @@ const Index = () => {
       {/* Quick Links Section */}
       <section className="section-padding bg-gray-50">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center">Quick Links</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center text-spectrum-800">Quick Links</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {quickLinks.map((link, index) => (
               <Link 
@@ -182,7 +182,7 @@ const Index = () => {
                 and submit your request at least one week prior to your move date.
               </p>
             </div>
-            <Button asChild size="lg" className="bg-spectrum-blue hover:bg-spectrum-blue/90 whitespace-nowrap">
+            <Button asChild size="lg" className="bg-spectrum-800 hover:bg-spectrum-700 whitespace-nowrap text-white">
               <Link to="/move-in-out">Schedule a Move</Link>
             </Button>
           </div>
