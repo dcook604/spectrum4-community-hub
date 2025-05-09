@@ -114,12 +114,6 @@ export default function CalendarPage() {
   // Get events for selected day
   const selectedDayEvents = selectedDay ? getDayEvents(selectedDay) : [];
 
-  // Render a dot on calendar days with events
-  const dayWithEventClassName = (date: Date) => {
-    const hasEvent = getDayEvents(date).length > 0;
-    return hasEvent ? "relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-spectrum-800 after:rounded-full" : "";
-  };
-
   return (
     <div className="container mx-auto p-4 md:p-8 space-y-6">
       <Card>
@@ -235,7 +229,23 @@ export default function CalendarPage() {
               }}
               classNames={{
                 day_selected: "bg-spectrum-800 text-white hover:bg-spectrum-900",
-                day: (date) => dayWithEventClassName(date),
+                // Fix: Remove the function and use a string directly for the day class
+                day: "relative",
+              }}
+              components={{
+                DayContent: (props) => {
+                  // Check if this day has events
+                  const hasEvent = getDayEvents(props.date).length > 0;
+                  
+                  return (
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <div>{props.date.getDate()}</div>
+                      {hasEvent && (
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-spectrum-800 rounded-full"></div>
+                      )}
+                    </div>
+                  );
+                },
               }}
             />
           </div>
