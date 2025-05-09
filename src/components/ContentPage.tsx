@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
 import { Card, CardContent } from "@/components/ui/card";
 
 interface PageContent {
@@ -67,7 +66,8 @@ export default function ContentPage() {
         <CardContent className="p-6 md:p-8">
           {page && (
             <div className="prose max-w-none">
-              <ReactMarkdown>{page.content}</ReactMarkdown>
+              <h1 className="text-3xl font-bold mb-6">{page.title}</h1>
+              <div dangerouslySetInnerHTML={{ __html: page.content }} />
             </div>
           )}
         </CardContent>

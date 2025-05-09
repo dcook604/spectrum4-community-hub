@@ -1,13 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
 import { FileText, FilePlus, Trash, PenLine } from "lucide-react";
+import { RichTextEditor } from "./RichTextEditor";
 
 interface PageContent {
   id: string;
@@ -35,28 +34,28 @@ export function PageManager() {
           id: '1',
           slug: 'recycling',
           title: "Recycling Guide",
-          content: "# Recycling Guide\n\nOur building follows the city's recycling guidelines. Please sort your waste into the following categories:\n\n- Paper and Cardboard\n- Plastics (Types 1, 2, and 5)\n- Glass\n- Metal\n- Compost\n\nCollection days are Tuesday and Friday.",
+          content: "<h1>Recycling Guide</h1><p>Our building follows the city's recycling guidelines. Please sort your waste into the following categories:</p><ul><li>Paper and Cardboard</li><li>Plastics (Types 1, 2, and 5)</li><li>Glass</li><li>Metal</li><li>Compost</li></ul><p>Collection days are Tuesday and Friday.</p>",
           lastUpdated: new Date().toISOString()
         },
         {
           id: '2',
           slug: 'bylaws',
           title: "Strata Bylaws",
-          content: "# Strata Bylaws\n\n## Noise\nQuiet hours are from 10pm to 8am.\n\n## Pets\nPets are allowed but must be registered with the strata council.\n\n## Rentals\nShort-term rentals less than 30 days are not permitted.",
+          content: "<h1>Strata Bylaws</h1><h2>Noise</h2><p>Quiet hours are from 10pm to 8am.</p><h2>Pets</h2><p>Pets are allowed but must be registered with the strata council.</p><h2>Rentals</h2><p>Short-term rentals less than 30 days are not permitted.</p>",
           lastUpdated: new Date().toISOString()
         },
         {
           id: '3',
           slug: 'contacts',
           title: "Important Contacts",
-          content: "# Important Contacts\n\n## Strata Manager\nJohn Smith - john@example.com - 555-123-4567\n\n## Building Manager\nSarah Johnson - sarah@example.com - 555-234-5678\n\n## Emergency Contact\nMaintenance Hotline - 555-911-0000",
+          content: "<h1>Important Contacts</h1><h2>Strata Manager</h2><p>John Smith - john@example.com - 555-123-4567</p><h2>Building Manager</h2><p>Sarah Johnson - sarah@example.com - 555-234-5678</p><h2>Emergency Contact</h2><p>Maintenance Hotline - 555-911-0000</p>",
           lastUpdated: new Date().toISOString()
         },
         {
           id: '4',
           slug: 'calendar',
           title: "Upcoming Events",
-          content: "# Upcoming Events\n\n## Annual General Meeting\nMay 15, 2025 - 7:00 PM - Meeting Room A\n\n## Building Maintenance\nElevator service - May 10, 2025 - 10:00 AM to 2:00 PM\n\n## Community BBQ\nJune 20, 2025 - 12:00 PM - Rooftop Garden",
+          content: "<h1>Upcoming Events</h1><h2>Annual General Meeting</h2><p>May 15, 2025 - 7:00 PM - Meeting Room A</p><h2>Building Maintenance</h2><p>Elevator service - May 10, 2025 - 10:00 AM to 2:00 PM</p><h2>Community BBQ</h2><p>June 20, 2025 - 12:00 PM - Rooftop Garden</p>",
           lastUpdated: new Date().toISOString()
         }
       ];
@@ -171,13 +170,12 @@ export function PageManager() {
               
               <div className="space-y-2">
                 <Label htmlFor="content">Page Content</Label>
-                <p className="text-xs text-gray-500 mb-2">You can use Markdown formatting for headings, lists, and more.</p>
-                <Textarea 
-                  id="content" 
-                  value={editingPage?.content || ''} 
-                  onChange={(e) => setEditingPage(prev => prev ? {...prev, content: e.target.value} : null)}
-                  className="min-h-[300px] font-mono"
-                  required
+                <p className="text-xs text-gray-500 mb-2">Use the rich text editor to format content, add images, and more.</p>
+                <RichTextEditor 
+                  content={editingPage?.content || ''} 
+                  onChange={(newContent) => setEditingPage(prev => 
+                    prev ? {...prev, content: newContent} : null
+                  )}
                 />
               </div>
               
