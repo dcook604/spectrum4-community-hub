@@ -143,8 +143,8 @@ const Navigation = () => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          "md:hidden absolute z-50 w-full bg-white shadow-md transition-all duration-300 ease-in-out",
-          isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 invisible"
+          "md:hidden absolute z-50 w-full bg-white shadow-md transition-all duration-300 ease-in-out pb-3",
+          isMenuOpen ? "max-h-[500px] overflow-y-auto opacity-100" : "max-h-0 opacity-0 invisible"
         )}
       >
         <div className="px-2 pt-2 pb-3 space-y-1">
