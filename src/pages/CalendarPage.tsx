@@ -177,7 +177,6 @@ export default function CalendarPage() {
                                   variant={"outline"}
                                   className="w-full pl-3 text-left font-normal"
                                   type="button"
-                                  onClick={() => setIsDialogOpen(true)}
                                 >
                                   {field.value ? (
                                     format(field.value, "PPP")
@@ -229,7 +228,6 @@ export default function CalendarPage() {
               }}
               classNames={{
                 day_selected: "bg-spectrum-800 text-white hover:bg-spectrum-900",
-                // Fix: Remove the function and use a string directly for the day class
                 day: "relative",
               }}
               components={{
