@@ -1,3 +1,4 @@
+
 import React, { useCallback, useState } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
@@ -52,7 +53,11 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
 
   const addImage = useCallback(() => {
     if (editor && imageUrl) {
-      editor.chain().focus().setImage({ src: imageUrl }).run();
+      // Use insertContent for adding images instead of setImage
+      editor.chain().focus().insertContent({
+        type: 'image',
+        attrs: { src: imageUrl }
+      }).run();
       setImageUrl('');
     }
   }, [editor, imageUrl]);
@@ -68,7 +73,6 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
     return null;
   }
 
-  
   return (
     <div className="border rounded-md">
       <div className="border-b bg-slate-50 p-2 flex flex-wrap items-center gap-1">
