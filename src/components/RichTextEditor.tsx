@@ -249,4 +249,3 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
     </div>
   );
 }
-
