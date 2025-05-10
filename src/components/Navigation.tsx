@@ -1,15 +1,15 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { GalleryHorizontal, Download, ChevronDown, Mail } from "lucide-react";
+import { GalleryHorizontal, Download, ChevronDown, Mail, Calendar, FileText, Home } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ActiveLink } from './ActiveLink';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,38 +21,31 @@ const Navigation = () => {
     { name: 'Calendar', path: '/calendar' },
   ];
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    // Building Info will be rendered separately as a dropdown
-    { name: 'Documents', path: '/documents', icon: Download },
-    { name: 'Gallery', path: '/gallery', icon: GalleryHorizontal },
-    { name: 'Contact', path: '/contact', icon: Mail },
-  ];
-
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center">
+            <ActiveLink href="/" className="flex items-center">
               <img 
                 src="/lovable-uploads/dee11acd-11f1-4587-a514-c315a952b4e8.png" 
                 alt="Spectrum 4 Logo" 
                 className="h-10 mr-3" 
               />
-            </Link>
+            </ActiveLink>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
             {/* Home link */}
-            <Link 
-              key="home" 
-              to="/"
+            <ActiveLink 
+              href="/"
               className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+              activeClassName="text-spectrum-800 border-b-2 border-spectrum-800 font-medium"
             >
+              <Home className="mr-1 h-4 w-4" />
               Home
-            </Link>
+            </ActiveLink>
 
             {/* Building Info Dropdown - positioned after Home */}
             <DropdownMenu>
@@ -68,53 +61,64 @@ const Navigation = () => {
               <DropdownMenuContent align="end" className="w-48 bg-white">
                 {buildingInfoLinks.map((link) => (
                   <DropdownMenuItem key={link.name} asChild>
-                    <Link 
-                      to={link.path}
+                    <ActiveLink 
+                      href={link.path}
                       className="w-full text-gray-700 hover:text-spectrum-blue"
                     >
                       {link.name}
-                    </Link>
+                    </ActiveLink>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
 
             {/* Documents link */}
-            <Link 
-              key="documents" 
-              to="/documents"
+            <ActiveLink 
+              href="/documents"
               className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+              activeClassName="text-spectrum-800 border-b-2 border-spectrum-800 font-medium"
             >
               <Download className="mr-1 h-4 w-4" />
               Documents
-            </Link>
+            </ActiveLink>
 
             {/* Gallery link */}
-            <Link 
-              key="gallery" 
-              to="/gallery"
+            <ActiveLink 
+              href="/gallery"
               className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+              activeClassName="text-spectrum-800 border-b-2 border-spectrum-800 font-medium"
             >
               <GalleryHorizontal className="mr-1 h-4 w-4" />
               Gallery
-            </Link>
+            </ActiveLink>
+
+            {/* Calendar link */}
+            <ActiveLink 
+              href="/calendar"
+              className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+              activeClassName="text-spectrum-800 border-b-2 border-spectrum-800 font-medium"
+            >
+              <Calendar className="mr-1 h-4 w-4" />
+              Calendar
+            </ActiveLink>
 
             {/* Contact link */}
-            <Link 
-              key="contact" 
-              to="/contact"
+            <ActiveLink 
+              href="/contact"
               className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+              activeClassName="text-spectrum-800 border-b-2 border-spectrum-800 font-medium"
             >
               <Mail className="mr-1 h-4 w-4" />
               Contact
-            </Link>
+            </ActiveLink>
 
-            <Link 
-              to="/admin" 
+            <ActiveLink 
+              href="/admin" 
               className="text-gray-700 hover:text-spectrum-blue px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              activeClassName="text-spectrum-800 border-b-2 border-spectrum-800 font-medium"
             >
               Admin
-            </Link>
+            </ActiveLink>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -149,13 +153,15 @@ const Navigation = () => {
       >
         <div className="px-2 pt-2 pb-3 space-y-1">
           {/* Home Link */}
-          <Link
-            to="/"
+          <ActiveLink
+            href="/"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50 flex items-center"
             onClick={() => setIsMenuOpen(false)}
+            activeClassName="text-spectrum-800 bg-gray-50 font-medium"
           >
+            <Home className="mr-2 h-4 w-4" />
             Home
-          </Link>
+          </ActiveLink>
           
           {/* Building Info Mobile Dropdown */}
           <div className="px-3 py-2 text-base font-medium text-gray-700">
@@ -163,54 +169,70 @@ const Navigation = () => {
           </div>
           <div className="pl-4 space-y-1">
             {buildingInfoLinks.map((link) => (
-              <Link
+              <ActiveLink
                 key={link.name}
-                to={link.path}
+                href={link.path}
                 className="block px-3 py-1.5 rounded-md text-sm font-medium text-gray-600 hover:text-spectrum-blue hover:bg-gray-50"
                 onClick={() => setIsMenuOpen(false)}
+                activeClassName="text-spectrum-800 bg-gray-50 font-medium"
               >
                 {link.name}
-              </Link>
+              </ActiveLink>
             ))}
           </div>
           
           {/* Documents Link */}
-          <Link
-            to="/documents"
+          <ActiveLink
+            href="/documents"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50 flex items-center"
             onClick={() => setIsMenuOpen(false)}
+            activeClassName="text-spectrum-800 bg-gray-50 font-medium"
           >
             <Download className="mr-2 h-4 w-4" />
             Documents
-          </Link>
+          </ActiveLink>
           
           {/* Gallery Link */}
-          <Link
-            to="/gallery"
+          <ActiveLink
+            href="/gallery"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50 flex items-center"
             onClick={() => setIsMenuOpen(false)}
+            activeClassName="text-spectrum-800 bg-gray-50 font-medium"
           >
             <GalleryHorizontal className="mr-2 h-4 w-4" />
             Gallery
-          </Link>
+          </ActiveLink>
           
-          {/* Contact Link */}
-          <Link
-            to="/contact"
+          {/* Calendar Link */}
+          <ActiveLink
+            href="/calendar"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50 flex items-center"
             onClick={() => setIsMenuOpen(false)}
+            activeClassName="text-spectrum-800 bg-gray-50 font-medium"
+          >
+            <Calendar className="mr-2 h-4 w-4" />
+            Calendar
+          </ActiveLink>
+          
+          {/* Contact Link */}
+          <ActiveLink
+            href="/contact"
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50 flex items-center"
+            onClick={() => setIsMenuOpen(false)}
+            activeClassName="text-spectrum-800 bg-gray-50 font-medium"
           >
             <Mail className="mr-2 h-4 w-4" />
             Contact
-          </Link>
+          </ActiveLink>
           
-          <Link
-            to="/admin"
+          <ActiveLink
+            href="/admin"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-spectrum-blue hover:bg-gray-50"
             onClick={() => setIsMenuOpen(false)}
+            activeClassName="text-spectrum-800 bg-gray-50 font-medium"
           >
             Admin
-          </Link>
+          </ActiveLink>
         </div>
       </div>
     </header>
