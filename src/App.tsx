@@ -14,6 +14,7 @@ import Documents from "./components/Documents";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import CalendarPage from "./pages/CalendarPage";
+import BylawsPage from "./pages/BylawsPage";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
               <Route path="/documents" element={<Documents />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/calendar" element={<CalendarPage />} />
+              <Route path="/bylaws" element={<BylawsPage />} />
               <Route path="/:slug" element={<ContentPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

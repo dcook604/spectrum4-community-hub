@@ -47,6 +47,11 @@ export const QuickLinksSection: React.FC<QuickLinksSectionProps> = ({ pages }) =
       color: "bg-spectrum-yellow/20 text-spectrum-yellow"
     }
   ].map(link => {
+    // For bylaws, always use the dedicated page
+    if (link.link === "/bylaws") {
+      return link;
+    }
+    
     // Match link with actual page if exists
     const matchingPage = pages.find(page => page.slug === link.link.substring(1));
     return matchingPage ? link : link;
