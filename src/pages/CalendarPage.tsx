@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { format } from "date-fns";
 import { Plus, CalendarIcon } from "lucide-react";
-import { useAdminAuth } from "@/components/AdminAuth";
+import { AdminAuthProvider, useAdminAuth } from "@/components/AdminAuth";
 import { useToast } from "@/hooks/use-toast";
 
 // Define the Event type
@@ -34,7 +34,7 @@ const eventFormSchema = z.object({
 
 type EventFormValues = z.infer<typeof eventFormSchema>;
 
-export default function CalendarPage() {
+const CalendarPageContent = () => {
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(new Date());
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -279,4 +279,12 @@ export default function CalendarPage() {
       </Card>
     </div>
   );
-}
+};
+
+export default function CalendarPage() {
+  return (
+    <AdminAuthProvider>
+      <CalendarPageContent />
+    </AdminAuthProvider>
+  );
+};
